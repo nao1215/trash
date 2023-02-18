@@ -51,7 +51,7 @@ func (i *Info) MakeInfoFile(trashSrcPath, trashDestPath string) error {
 	content += fmt.Sprintf("Path=%s\n", absOrgPath)
 	content += fmt.Sprintf("DeletionDate=%s\n", now)
 
-	_, err = fmt.Fprintf(f, content)
+	_, err = fmt.Fprint(f, content)
 	if err != nil {
 		fmt.Println(err)
 	}
