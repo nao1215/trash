@@ -10,7 +10,7 @@ builds:
     ldflags:
       - -s -w -X 'github.com/nao1215/trash/cmd.Version=v{{ .Version }}'
     env:
-      - CGO_ENABLED=1
+      - CGO_ENABLED=0
     goos:
       - linux
     goarch:

@@ -72,9 +72,43 @@ func (t *Trash) List() ([]string, error) {
 	return fileNameList, nil
 }
 
+func (t *Trash) Restore(fileName string, overwrite bool) error {
+	originalLocation, err := t.Info.originalFileLocation(fileName)
+	if err != nil {
+		return err
+	}
+
+	if file.Exists(originalLocation) && !overwrite {
+		return ErrRestoreTargetFileAlreadyExist
+	}
+
+	trashPath := filepath.Join(t.HomeTrashCanPath, "files", fileName)
+	if !file.Exists(filepath.Dir(originalLocation)) {
+		// TODO: use correct permission
+		if err := os.MkdirAll(filepath.Dir(originalLocation), 0700); err != nil {
+			return fmt.Errorf("%w: %w", ErrMakeTrashFilesDir, err)
+		}
+	}
+
+	if err := os.Rename(trashPath, originalLocation); err != nil {
+		return fmt.Errorf("%w: %w", ErrRestoreFile, err)
+	}
+	fmt.Fprintf(os.Stdout, "restore at %s\n", originalLocation)
+	return nil
+}
+
+func (t *Trash) Erase(fileName string) error {
+	trashPath := filepath.Join(t.HomeTrashCanPath, "files", fileName)
+	if err := os.RemoveAll(trashPath); err != nil {
+		return fmt.Errorf("%w: %w", ErrEraseFileInTrash, err)
+	}
+	fmt.Fprintf(os.Stdout, "erase %s\n", trashPath)
+	return nil
+}
+
 func (t *Trash) decideTrashDestPath(targetFile string) string {
 	basename := filepath.Base(targetFile)
-	dest := filepath.Join(t.HomeTrashCanPath, basename)
+	dest := filepath.Join(t.HomeTrashCanPath, "files", basename)
 	if !file.Exists(dest) {
 		return dest
 	}

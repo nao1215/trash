@@ -10,8 +10,8 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:     "list",
-	Short:   "list file/directory under $XDG_DATA_HOME/Trash/files.",
-	Long:    `list file/directory under $XDG_DATA_HOME/Trash/files.`,
+	Short:   "List file/directory at $XDG_DATA_HOME/Trash/files.",
+	Long:    `List file/directory at $XDG_DATA_HOME/Trash/files.`,
 	Example: `  trash list`,
 
 	Run: func(cmd *cobra.Command, args []string) {

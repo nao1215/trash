@@ -11,8 +11,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use: "trash",
-	Short: `trash command move file/directory under $XDG_DATA_HOME/Trash/files (it's trash can).
-These files can be listed, undeleted, or cleaned from the trash can.`,
+	Short: `The trash command move(delete) file/directory at $XDG_DATA_HOME/Trash/files.
+These files can be listed, restore, or cleaned from the trash can.`,
 }
 
 // OsExit is wrapper for  os.Exit(). It's for unit test.
