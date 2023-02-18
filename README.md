@@ -1,5 +1,6 @@
 # trash - freedesktop-compliant "Trash can"
-The trash project provides libraries and CLI commands that follow the [freedesktop.org trash specification](https://specifications.freedesktop.org/trash-spec/trashspec-1.0.html) in golang.
+The trash project provides libraries and CLI commands that follow the [freedesktop.org trash specification](https://specifications.freedesktop.org/trash-spec/trashspec-1.0.html) in golang.  
+
 
 # "trash" cli tool
 ## How to install
@@ -13,10 +14,24 @@ $ go install github.com/nao1215/trash@latest
 [The release page](https://github.com/nao1215/trash/releases) contains packages in .deb, .rpm, and .apk formats.
 
 ## List of features
-TODO:
-
 ## How to use
-TODO:
+### move file/directory to trash can
+```
+$ trash move PATH/TO/FILE
+```
+### list file/directory in trash can
+```
+$ trash list
+```
+### restore file/directory in trash can
+```
+$ trash restore FILE_NAME
+```
+
+### erase file/directory in trash can
+```
+$ trash erase FILE_NAME
+```
 
 # "trash" Library
 ## How to use
