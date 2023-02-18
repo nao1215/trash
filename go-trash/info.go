@@ -76,7 +76,7 @@ func (i *Info) originalFileLocation(fileNameInTrashCan string) (string, error) {
 
 // spec.: The implementation MUST ignore any other lines in this file, except the first
 // line (must be [Trash Info]) and these two key/value pairs. If a string that starts
-// with “Path=” or “DeletionDate=” occurs several times, the first occurence is to be used
+// with “Path=” or “DeletionDate=” occurs several times, the first occurrence is to be used
 func (i *Info) getKeyValue(path string) (map[string]string, error) {
 	bytes, err := os.ReadFile(path)
 	if err != nil {
